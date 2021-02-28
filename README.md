@@ -7,18 +7,19 @@ This tool is meant to snap objects to locators, that are set by the user in orde
 ----
 
 
-Snapping objects: The first selection, will snap to the second selection. If object 1 is a parentConstrained Locator, the parentConstraint will be re-applied after.
++ Snapping objects: The first selection, will snap to the second selection. If object 1 is a parentConstrained Locator, the parentConstraint will be re-applied after.
 
-Adding locators: Selecting 1 object will create a locator at the same pivot. Selecting 2 objects, will parentConstrain the locator relative to the second object.
++ Adding locators: Selecting 1 object will create a locator at the same pivot. Selecting 2 objects, will parentConstrain the locator relative to the second object.
 
-Deleting locators: If there is nothing selected, a prompt will appear to delete all GSnap nodes (GSnap group+locators).
++ Deleting locators: If there is nothing selected, a prompt will appear to delete all GSnap nodes (GSnap group+locators).
 
 + Locator shape scale slider
 
 + Hide/Unhide all locators checkbox
 
 
----- Installation ----
+ Installation 
+----
 
 Maya compatibility:    2020
 
