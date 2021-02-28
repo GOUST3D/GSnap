@@ -26,3 +26,6 @@ Maya compatibility: 2020
 
 import GSnap
 reload(GSnap)
+
+
+Enjoy!
