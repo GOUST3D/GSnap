@@ -11,7 +11,7 @@ This is meant to Snap objects to locators, that are set-up by the user, in order
 
 + *Snapping objects*:  The first selection, will Snap to the second selection. If the first is a ***parentConstrained Locator***, the parentConstraint will be re-applied **after**.
 
-+ *Adding locators*:  Selecting 1 object will create a locator at the same pivot. Selecting 2 objects, will parentConstrain the locator relative to the second object.
++ *Adding locators*:  Selecting 1 object will create a locator at the same pivot. Selecting 2 objects, will **parentConstrain** the locator relative to the second object.
 
 
 + *Deleting locators*:  If there is nothing selected, a prompt will appear to delete all GSnap nodes (GSnap group+locators).
