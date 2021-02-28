@@ -11,6 +11,7 @@ This is meant to Snap objects to locators, that are set-up by the user, in order
 
 + *Snapping objects*:  The first selection, will Snap to the second selection. If the first is a ***parentConstrained Locator***, the parentConstraint will be re-applied **after**.
 
+![Snap](https://cdn.discordapp.com/attachments/561729288609595402/815708764861628416/iQdov4BvOV.gif)
 
 + *Adding locators*:  Selecting 1 object will create a locator at the same pivot. Selecting 2 objects, will parentConstrain the locator relative to the second object.
 
