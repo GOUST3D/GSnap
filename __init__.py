@@ -229,22 +229,12 @@ class AppWindow(QDialog):
             cmds.delete(constraint)
 
         try:
-            value_locator = cmds.spaceLocator(name="gsnap_value_locator")
-            constraint = cmds.parentConstraint(selected[1], selected[0], mo=False)
-            cmds.delete(constraint)
-            cmds.setAttr(str(selected[0]) + ".translateX", cmds.getAttr(value_locator + ".translateX"))
-            cmds.setAttr(str(selected[0]) + ".translateY", cmds.getAttr(value_locator + ".translateY"))
-            cmds.setAttr(str(selected[0]) + ".translateZ", cmds.getAttr(value_locator + ".translateZ"))
-            cmds.setAttr(str(selected[0]) + ".rotateX", cmds.getAttr(value_locator + ".rotateX"))
-            cmds.setAttr(str(selected[0]) + ".rotateY", cmds.getAttr(value_locator + ".rotateY"))
-            cmds.setAttr(str(selected[0]) + ".rotateZ", cmds.getAttr(value_locator + ".rotateZ"))
-        except Exception as e:
-            print("Err Setting Values ::: "+str(e.message))
-        finally:
-            cmds.delete(value_locator)
+            cmds.matchTransform(selected[0], selected[1], piv=False, position=True, rotation=True, scale=False)
+        except:
+            pass
 
         if constraint_parent:
-            cmds.parentConstraint(constraint_parent, selected[0], mo=True)  # C   #
+            cmds.parentConstraint(constraint_parent, selected[0], mo=True)
 
         cmds.select(selected[0], replace=True)
         self.update_widgets()
