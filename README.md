@@ -16,6 +16,7 @@ Deleting locators: If there is nothing selected, a prompt will appear to delete 
 
 
 --- Installation ---
+
 Maya compatibility: 2020
 
 + Place files in "\Documents\maya\2020\scripts\GSnap"
@@ -24,9 +25,11 @@ Maya compatibility: 2020
 
 + Add lines:
 
+
 import GSnap
 
 reload(GSnap)
+
 
 
 
