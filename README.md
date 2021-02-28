@@ -31,16 +31,16 @@ This is meant to Snap objects to locators, that are set-up by the user, in order
 
 Maya compatibility:    2020
 
-+ Place files in "\Documents\maya\2020\scripts\GSnap"
++ Place files in **\Documents\maya\2020\scripts\GSnap**
 
-+ Create a shelf button, set it to "Python"!
++ Create a shelf button, set it to **Python!**
 
 + Add lines:
 
 
 import GSnap
-
 reload(GSnap)
+
 
 -----
 
