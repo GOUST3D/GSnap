@@ -13,3 +13,16 @@ Deleting locators: If there is nothing selected, a prompt will appear to delete 
 + Locator shape scale slider
 
 + Hide/Unhide all locators checkbox
+
+
+--- Installation ---
+Maya compatibility: 2020
+
++ Place files in "\Documents\maya\2020\scripts\GSnap"
+
++ Create a shelf button, set it to "Python"!
+
++ Add lines:
+
+import GSnap
+reload(GSnap)
