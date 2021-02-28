@@ -25,7 +25,9 @@ Maya compatibility: 2020
 + Add lines:
 
 import GSnap
+
 reload(GSnap)
+
 
 
 Enjoy!
