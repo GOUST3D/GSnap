@@ -29,7 +29,7 @@ This is meant to Snap objects to locators, that are set-up by the user, in order
  Installation 
 ----
 
-Maya compatibility:    2020
+Maya compatibility: 2017, 2020
 
 + Place files in **\Documents\maya\2020\scripts\GSnap**
 
