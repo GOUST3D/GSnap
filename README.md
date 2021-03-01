@@ -53,4 +53,4 @@ Enjoy!
 
 Known Quirks
 ----
-+ Some actions like deleting locators will take an additional undo press
++ Undoing some actions, like deleting locators from the UI will take an additional undo press.
