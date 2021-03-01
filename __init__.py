@@ -1,10 +1,18 @@
 import sys, os, time, re
-from PySide2.QtWidgets import QApplication, QWidget, QDialog, QInputDialog, QMessageBox, QMainWindow, QVBoxLayout, \
-    QPushButton, QSlider, QListWidget, QCheckBox, QListWidgetItem
-from PySide2.QtCore import QFile, Qt, QSettings, QEvent, QMimeData, QTimer
-from PySide2.QtGui import QIcon, QFocusEvent
-from PySide2.QtUiTools import QUiLoader
-from shiboken2 import wrapInstance
+try:
+    from PySide.QtCore import QApplication, QWidget, QDialog, QInputDialog, QMessageBox, QMainWindow, QVBoxLayout, \
+        QPushButton, QSlider, QListWidget, QCheckBox, QListWidgetItem
+    from PySide.QtGui import QIcon, QFocusEvent
+    from PySide.QtUiTools import QUiLoader
+    from shiboken import wrapInstance
+except:
+    from PySide2.QtWidgets import QApplication, QWidget, QDialog, QInputDialog, QMessageBox, QMainWindow, QVBoxLayout, \
+        QPushButton, QSlider, QListWidget, QCheckBox, QListWidgetItem
+    from PySide2.QtCore import QFile, Qt, QSettings, QEvent, QMimeData, QTimer
+    from PySide2.QtGui import QIcon, QFocusEvent
+    from PySide2.QtUiTools import QUiLoader
+    from shiboken2 import wrapInstance
+
 import maya.OpenMayaUI as omui
 import maya.cmds as cmds
 import maya.mel as mel
@@ -12,9 +20,7 @@ import maya.mel as mel
 # for UNDO decorator
 from functools import wraps
 
-"""
-PROTOTYPE TOOL Concept by Gibson Weitzel
-"""
+""" PROTOTYPE TOOL Concept by Gibson Weitzel """
 
 ptr = omui.MQtUtil.mainWindow()
 parent = wrapInstance(long(ptr), QWidget)
@@ -23,9 +29,7 @@ parent = wrapInstance(long(ptr), QWidget)
 class AppWindow(QDialog):
 
     def __init__(self):
-        '''
-        Initializing App UI QDialog instance, parenting it to Maya's window
-        '''
+        """ Initializing App UI QDialog instance, parenting it to Maya's window """
         # Passing in Maya's window pointer
         super(AppWindow, self).__init__(parent)
 
@@ -33,17 +37,17 @@ class AppWindow(QDialog):
         cmds.undoInfo(state=True, infinity=True)
 
         # Create a QIcon object
-        icon = QIcon(os.path.join(os.path.dirname(__file__), "icon.png"))
+        self.icon = QIcon(os.path.join(os.path.dirname(__file__), "icon.png"))
 
         # Create Error Messagebox Object
         self.msg = QMessageBox()
         # Assign Error MessageBox Title
         self.msg.setWindowTitle("ERROR")
         # Assign Error MessageBox Icon
-        self.msg.setWindowIcon(icon)
+        self.msg.setWindowIcon(self.icon)
 
         # Assign the icon to the App Window
-        self.setWindowIcon(icon)
+        self.setWindowIcon(self.icon)
         # Assign Window Title
         self.setWindowTitle("GSnap")
 
@@ -108,15 +112,11 @@ class AppWindow(QDialog):
         return _undofunc
 
     def maya_item_changed(self):
-        '''
-        Updates GUI with Maya changes
-        '''
+        """ Updates GUI with Maya changes """
         self.qtimer_update_widgets(maya=True)
 
     def list_item_changed(self):
-        '''
-        Updates Maya with GUI changes
-        '''
+        """ Updates Maya with GUI changes """
         self.qtimer_update_widgets(gsnap=True)
 
     def qtimer_update_widgets(self, gsnap=False, maya=False):
@@ -200,10 +200,8 @@ class AppWindow(QDialog):
             self.update_widgets()
     @undo
     def snap_values(self):
-        '''
-        Snaps selected object 1 to object 2.
-        If a constraint exists on object 1, grab it's parent, and reapply it after value change.
-        '''
+        """ Snaps selected object 1 to object 2.
+        If a constraint exists on object 1, grab it's parent, and reapply it after value change. """
 
         selected = cmds.ls(sl=True)
 
@@ -256,7 +254,10 @@ class AppWindow(QDialog):
 
             msg = QMessageBox()
             msg.setWindowTitle("X")
-            text = msg.question(self, 'X', "Delete all Locators?", msg.Yes | msg.No)
+            msg.setText("Delete all Locators?")
+            msg.setWindowIcon(self.icon)
+            msg.setStandardButtons(QMessageBox.Yes | QMessageBox.No)
+            text = msg.exec_()
 
             if text == msg.Yes:
                 cmds.delete("GSnap")
@@ -285,10 +286,12 @@ class AppWindow(QDialog):
             if text.isdecimal() is not False:
                 self.msg.setText("Invalid Name:  <B><FONT COLOR='ORANGE'>" + text + "</FONT></B>  !")
                 self.msg.show()
+                self.msg.exec_()
                 return
             elif text in cmds.listRelatives("GSnap", c=True):
                 self.msg.setText("Object already named:  <B><FONT COLOR='ORANGE'>" + text + "</FONT></B>  !")
                 self.msg.show()
+                self.msg.exec_()
                 return
         except:
             pass
@@ -325,9 +328,7 @@ class AppWindow(QDialog):
             cmds.setFocus("MayaWindow")
     @undo
     def update_size(self, arg=None):
-        '''
-        Updates the size of every locator when slider is released
-        '''
+        """ Updates the size of every locator when slider is released """
         try:
             value = self.findChild(QWidget, "horizontalSlider").value()
             for i in cmds.listRelatives("GSnap", c=True):
@@ -346,9 +347,7 @@ class AppWindow(QDialog):
             QTimer.singleShot(time, function)
 
     def connect_widgets(self):
-        """
-        Connect widgets to functions
-        """
+        """ Connect widgets to functions """
         # Grabbing all QWidgets
 
         self.horizontalSlider = self.findChild(QSlider, "horizontalSlider")
@@ -370,9 +369,7 @@ class AppWindow(QDialog):
         self.listWidget.itemClicked.connect(self.list_item_changed)
 
     def closeEvent(self, event):
-        """
-        Save size geometry/location placement, and destroy on closing
-        """
+        """ Save size geometry/location placement, and destroy on closing """
         settings_obj = QSettings(self.settings_path, QSettings.IniFormat)
         settings_obj.setValue("windowGeometry", self.saveGeometry())
         cmds.scriptJob(kill=self.selectJob, force=True)
