@@ -44,6 +44,11 @@ reload(GSnap)
 
 
 
+Intended Use
 -----
+For Animators, TD, or anybody that needs to save locations/match, with Maya's built in functionality in GUI form.
+100% Open Source, free for educational or commercial purposes.
+
 
 Enjoy!
+
