@@ -34,7 +34,7 @@ class AppWindow(QDialog):
         super(AppWindow, self).__init__(parent)
 
         # Enabling Undo Queue
-        cmds.undoInfo(state=True, infinity=True)
+        cmds.undoInfo(state=True)
 
         # Create a QIcon object
         self.icon = QIcon(os.path.join(os.path.dirname(__file__), "icon.png"))
