@@ -50,3 +50,7 @@ For Animators, TD, or anybody that needs to save locations/match, with Maya's bu
 
 Enjoy!
 
+
+Known Quirks
+----
++ Some actions like deleting locators will take an additional undo press
