@@ -39,6 +39,7 @@ Maya compatibility: 2017, 2020  |  PySide, PySide2
 
 
 import GSnap
+
 reload(GSnap)
 
 
