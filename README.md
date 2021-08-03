@@ -1,7 +1,7 @@
 GSnap
 ----
 
-GSnap is a matching tool in UI form, for Snapping objects to locators that are set-up by the user. This allows for maintaining a specific position/rotation within world space, or relative to another object.
+GSnap is a matching tool in UI form, for Snapping objects to locators that are set-up by the user. This allows for maintaining a specific position/rotation within world space, or relative to another object. (Uses Modify > Match Transform + Rotation)
 
 
 ----
