@@ -27,7 +27,7 @@ GSnap is a matching tool in UI form, for Snapping objects to locators that are s
  Installation 
 ----
 
-Maya compatibility: 2017, 2020  |  PySide, PySide2
+Maya compatibility: 2017, 2020, 2022  |  PySide, PySide2
 
 + Place files in **\Documents\maya\2020\scripts\GSnap**
 
