@@ -20,8 +20,7 @@ GSnap is a matching tool in UI form, for Snapping objects to locators that are s
 
 + *Hide/Unhide all locators checkbox*
 
-
-![Snap](https://cdn.discordapp.com/attachments/569400960988872704/872000324947300414/HGbT8e7LIh.gif)
+![Snap](https://cdn.discordapp.com/attachments/561729288609595402/815708764861628416/iQdov4BvOV.gif)
 
 
  Installation 
